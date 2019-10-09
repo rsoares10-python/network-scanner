@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # Built-in/Generic Imports
-import optparse
+import argparse
 
 # Thirdparty imports
 import scapy.all as scapy
@@ -38,10 +38,9 @@ def print_result(clients_list):
 def get_args():
     '''Get user arguments  and parse them.'''
 
-    usage = "usage: %prog [OPTION1] arg1"
-    parser = optparse.OptionParser(usage=usage)
-    parser.add_option("-t", "--target", dest="target", help="Specify IP target range")
-    (options, arguments) = parser.parse_args()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-t", "--target", dest="target", help="Specify IP target range")
+    options = parser.parse_args()
     if not options.target:
         parser.error("[-] Please specify an IP target range, use --help for more info")
     return options
